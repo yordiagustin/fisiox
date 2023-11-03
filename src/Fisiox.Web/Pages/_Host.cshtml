@@ -5,11 +5,12 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="~/" />
-    <link rel="icon" type="image/png" href="favicon.png"/>
+    <link rel="icon" type="image/png" href="favicon.png" />
 
     <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/vendor/slick.css">
@@ -30,10 +31,23 @@
 
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 </head>
+
 <body class="rbt-header-sticky">
     <component type="typeof(App)" render-mode="ServerPrerendered" />
 
-    <script src="_framework/blazor.server.js"></script>
+    <script src="~/_framework/blazor.server.js" autostart="false"></script>
+
+    <script>
+        Blazor.start().then(() => {
+            Blazor.defaultReconnectionHandler._reconnectionDisplay = {
+                show: () => {},
+                update: (d) => {},
+                rejected: (d) => document.location.reload()
+            };
+        });
+    </script>
+
+    @* <script src="_framework/blazor.server.js"></script> *@
 
     <script src="assets/js/vendor/modernizr.min.js"></script>
     <script src="assets/js/vendor/jquery.js"></script>
@@ -63,4 +77,5 @@
 
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>
